@@ -1,6 +1,7 @@
 package com.example.QuickOrder.Controller;
 
 import com.example.QuickOrder.DTO.AddProductRequestDto;
+import com.example.QuickOrder.DTO.GetAllProductsOfFarmerResponseDto;
 import com.example.QuickOrder.DTO.GetProductResponseDto;
 import com.example.QuickOrder.Exceptions.FarmerIdDoesNotExistException;
 import com.example.QuickOrder.Service.ProductService;
@@ -45,4 +46,12 @@ public class ProductController
         }
         return new ResponseEntity(productList, HttpStatus.FOUND);
     }
+
+    @GetMapping("/getproductswhichareavailable") // means quantities are above 0
+    public List<GetProductResponseDto> getProductsWhichAreAvailable()
+    {
+        return productService.getProductsWhichAreAvailable();
+    }
+
+
 }

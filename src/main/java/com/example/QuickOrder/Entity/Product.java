@@ -29,4 +29,8 @@ public class Product
     @ManyToOne
     @JoinColumn
     Farmer farmer;
+
+    @ManyToOne
+    @JoinColumn
+    CustomerCart customerCart;
 }

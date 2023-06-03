@@ -75,4 +75,24 @@ public class ProductService
         }
         return productResponseDtos;
     }
+
+    public List<GetProductResponseDto> getProductsWhichAreAvailable()
+    {
+        List<Product> productList = productRepository.findAll();
+        List<GetProductResponseDto> productResponseDtoList = new ArrayList<>();
+        for(Product product : productList)
+        {
+            if(product.getProductAvailableQuantity() > 1)
+            {
+                GetProductResponseDto getProductResponseDto = new GetProductResponseDto();
+                getProductResponseDto.setProductName(product.getProductName());
+                getProductResponseDto.setProductAvailableQuantity(product.getProductAvailableQuantity());
+                getProductResponseDto.setProductPrice(product.getProductPrice());
+                getProductResponseDto.setProductOwnerName(product.getFarmer().getName());
+                getProductResponseDto.setProductOwnerMobNo(product.getFarmer().getPhoneNo());
+                productResponseDtoList.add(getProductResponseDto);
+            }
+        }
+        return productResponseDtoList;
+    }
 }
